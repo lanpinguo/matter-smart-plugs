@@ -22,7 +22,7 @@ endif()
 
 find_package(Zephyr HINTS $ENV{ZEPHYR_BASE})
 
-project(matter-light-bulb)
+project(matter-smart-pulgs)
 
 set(COMMON_ROOT ${ZEPHYR_NRF_MODULE_DIR}/samples/matter/common)
 set(NLIO_ROOT ${ZEPHYR_CONNECTEDHOMEIP_MODULE_DIR}/third_party/nlio/repo)
@@ -59,6 +59,6 @@ chip_configure_data_model(app
     INCLUDE_SERVER
     BYPASS_IDL
     GEN_DIR src/zap-generated
-    ZAP_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/light_bulb.zap
+    ZAP_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/smart_plugs.zap
 )
 # NORDIC SDK APP END
