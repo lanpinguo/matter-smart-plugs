@@ -17,6 +17,7 @@ if(CONF_FILE)
 endif()
 
 if(NOT "${CONFIG_FILE_NAME}" STREQUAL "prj_no_dfu.conf")
+    message(STATUS "PM on board:" ${BOARD})
     set(PM_STATIC_YML_FILE ${CMAKE_CURRENT_SOURCE_DIR}/configuration/${BOARD}/pm_static_dfu.yml)
 endif()
 
