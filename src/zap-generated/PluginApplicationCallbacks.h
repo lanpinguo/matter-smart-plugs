@@ -21,37 +21,15 @@
 
 void MatterIdentifyPluginServerInitCallback();
 void MatterGroupsPluginServerInitCallback();
+void MatterScenesPluginServerInitCallback();
 void MatterOnOffPluginServerInitCallback();
 void MatterLevelControlPluginServerInitCallback();
 void MatterDescriptorPluginServerInitCallback();
-void MatterAccessControlPluginServerInitCallback();
-void MatterBasicInformationPluginServerInitCallback();
-void MatterOtaSoftwareUpdateRequestorPluginServerInitCallback();
-void MatterGeneralCommissioningPluginServerInitCallback();
-void MatterNetworkCommissioningPluginServerInitCallback();
-void MatterGeneralDiagnosticsPluginServerInitCallback();
-void MatterSoftwareDiagnosticsPluginServerInitCallback();
-void MatterThreadNetworkDiagnosticsPluginServerInitCallback();
-void MatterWiFiNetworkDiagnosticsPluginServerInitCallback();
-void MatterAdministratorCommissioningPluginServerInitCallback();
-void MatterOperationalCredentialsPluginServerInitCallback();
-void MatterGroupKeyManagementPluginServerInitCallback();
 
-#define MATTER_PLUGINS_INIT                                                                                            \
-	MatterIdentifyPluginServerInitCallback();                                                                      \
-	MatterGroupsPluginServerInitCallback();                                                                        \
-	MatterOnOffPluginServerInitCallback();                                                                         \
-	MatterLevelControlPluginServerInitCallback();                                                                  \
-	MatterDescriptorPluginServerInitCallback();                                                                    \
-	MatterAccessControlPluginServerInitCallback();                                                                 \
-	MatterBasicInformationPluginServerInitCallback();                                                              \
-	MatterOtaSoftwareUpdateRequestorPluginServerInitCallback();                                                    \
-	MatterGeneralCommissioningPluginServerInitCallback();                                                          \
-	MatterNetworkCommissioningPluginServerInitCallback();                                                          \
-	MatterGeneralDiagnosticsPluginServerInitCallback();                                                            \
-	MatterSoftwareDiagnosticsPluginServerInitCallback();                                                           \
-	MatterThreadNetworkDiagnosticsPluginServerInitCallback();                                                      \
-	MatterWiFiNetworkDiagnosticsPluginServerInitCallback();                                                        \
-	MatterAdministratorCommissioningPluginServerInitCallback();                                                    \
-	MatterOperationalCredentialsPluginServerInitCallback();                                                        \
-	MatterGroupKeyManagementPluginServerInitCallback();
+#define MATTER_PLUGINS_INIT                                                                                                        \
+    MatterIdentifyPluginServerInitCallback();                                                                                      \
+    MatterGroupsPluginServerInitCallback();                                                                                        \
+    MatterScenesPluginServerInitCallback();                                                                                        \
+    MatterOnOffPluginServerInitCallback();                                                                                         \
+    MatterLevelControlPluginServerInitCallback();                                                                                  \
+    MatterDescriptorPluginServerInitCallback();
