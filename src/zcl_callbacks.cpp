@@ -22,11 +22,16 @@ void MatterPostAttributeChangeCallback(const chip::app::ConcreteAttributePath &a
 {
 	ClusterId clusterId = attributePath.mClusterId;
 	AttributeId attributeId = attributePath.mAttributeId;
+	EndpointId aEndpointId = attributePath.mEndpointId;
 
 	if (clusterId == OnOff::Id && attributeId == OnOff::Attributes::OnOff::Id) {
 		ChipLogProgress(Zcl, "Cluster OnOff: attribute OnOff set to %" PRIu8 "", *value);
 		AppTask::Instance().GetPWMDevice().InitiateAction(*value ? PWMDevice::ON_ACTION : PWMDevice::OFF_ACTION,
 								  static_cast<int32_t>(AppEventType::Lighting), value);
+		AppTask::Instance().GetRelayDevice().Set(
+				static_cast<int32_t>(aEndpointId) - 1, 
+				*value ? IO_Relay::ON_ACTION : IO_Relay::OFF_ACTION);
+
 	} else if (clusterId == LevelControl::Id && attributeId == LevelControl::Attributes::CurrentLevel::Id) {
 		ChipLogProgress(Zcl, "Cluster LevelControl: attribute CurrentLevel set to %" PRIu8 "", *value);
 		if (AppTask::Instance().GetPWMDevice().IsTurnedOn()) {
