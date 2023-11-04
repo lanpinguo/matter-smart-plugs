@@ -24,7 +24,7 @@ LOG_MODULE_REGISTER(io_ctrl);
 
 
 
-int IO_Relay::Set(int slot, Action_t aAction)
+int IO_Relay::Set(int slot, int chl, Action_t aAction)
 {
 	int ret;
 	uint8_t buf[2] = {0};
@@ -44,13 +44,14 @@ int IO_Relay::Set(int slot, Action_t aAction)
 		return -1;
 	}	
 
-	buf[0] = buf[0] & 0xFC;
+	buf[0] = buf[0] & (~(0x3<<(2*chl)));
 	if(aAction == OFF_ACTION){
-		buf[0] |= 0x02;
+		buf[0] |= (0x02 << (2*chl));
 	}
 	else{
-		buf[0] |= 0x01;
+		buf[0] |= (0x01 << (2*chl));
 	}
+
 	ret = i2c_write_dt(&mIOExpander[slot], buf, 1);
 	if(ret != 0){
 		LOG_ERR("Failed to write to I2C device address %x at reg. %x \n", mIOExpander[slot].addr, buf[0]);

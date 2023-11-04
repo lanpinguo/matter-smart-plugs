@@ -46,7 +46,7 @@ public:
 	// void SetCallbacks(RelayCallback aActionInitiatedClb, RelayCallback aActionCompletedClb);
 	// const device *GetDevice(int slot) { return mIOExpander[slot]->dev; }
 	// void SuppressOutput();
-	int Set(int slot, Action_t aAction);
+	int Set(int slot, int chl, Action_t aAction);
 
 private:
 	State_t mState;

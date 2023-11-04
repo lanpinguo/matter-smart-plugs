@@ -170,6 +170,9 @@ CHIP_ERROR AppTask::Init()
 		return chip::System::MapErrorZephyr(ret);
 	}
 
+    /* update hardware config */
+	mIO_Config.UpdateMode();
+
 	/* Initialize function timer */
 	k_timer_init(&sFunctionTimer, &AppTask::FunctionTimerTimeoutCallback, nullptr);
 	k_timer_user_data_set(&sFunctionTimer, this);
@@ -189,6 +192,8 @@ CHIP_ERROR AppTask::Init()
 		return chip::System::MapErrorZephyr(ret);
 	}
 	mPWMDevice.SetCallbacks(ActionInitiated, ActionCompleted);
+
+
 
 #ifdef CONFIG_CHIP_OTA_REQUESTOR
 	/* OTA image confirmation must be done before the factory data init. */

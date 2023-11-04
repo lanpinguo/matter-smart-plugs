@@ -28,9 +28,19 @@ void MatterPostAttributeChangeCallback(const chip::app::ConcreteAttributePath &a
 		ChipLogProgress(Zcl, "Cluster OnOff: attribute OnOff set to %" PRIu8 "", *value);
 		AppTask::Instance().GetPWMDevice().InitiateAction(*value ? PWMDevice::ON_ACTION : PWMDevice::OFF_ACTION,
 								  static_cast<int32_t>(AppEventType::Lighting), value);
-		AppTask::Instance().GetRelayDevice().Set(
-				static_cast<int32_t>(aEndpointId) - 1, 
-				*value ? IO_Relay::ON_ACTION : IO_Relay::OFF_ACTION);
+
+        if(AppTask::Instance().GetRelayMode() == IO_Config::COMPACT_COMPACT){
+            ChipLogProgress(Zcl, "Relay Mode: C_C");
+            AppTask::Instance().GetRelayDevice().Set(
+                    (static_cast<int32_t>(aEndpointId) - 1) / 4, (static_cast<int32_t>(aEndpointId) - 1) % 4, 
+                    *value ? IO_Relay::ON_ACTION : IO_Relay::OFF_ACTION);
+        }
+        else{
+            ChipLogProgress(Zcl, "Relay Mode: N_N");
+            AppTask::Instance().GetRelayDevice().Set(
+                    static_cast<int32_t>(aEndpointId) - 1, 0, 
+                    *value ? IO_Relay::ON_ACTION : IO_Relay::OFF_ACTION);
+        }
 
 	} else if (clusterId == LevelControl::Id && attributeId == LevelControl::Attributes::CurrentLevel::Id) {
 		ChipLogProgress(Zcl, "Cluster LevelControl: attribute CurrentLevel set to %" PRIu8 "", *value);
