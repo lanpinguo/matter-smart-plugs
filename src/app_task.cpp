@@ -536,14 +536,14 @@ void AppTask::UpdateStatusLED()
 {
 	/* Update the status LED.
 	 *
-	 * If IPv6 network and service provisioned, keep the LED On constantly.
+	 * If IPv6 network and service provisioned, keep the LED Off constantly.
 	 *
 	 * If the system has ble connection(s) uptill the stage above, THEN blink the LED at an even
 	 * rate of 100ms.
 	 *
 	 * Otherwise, blink the LED for a very short time. */
 	if (sIsNetworkProvisioned && sIsNetworkEnabled) {
-		sStatusLED.Set(true);
+		sStatusLED.Set(false);
 	} else if (sHaveBLEConnections) {
 		sStatusLED.Blink(LedConsts::StatusLed::Unprovisioned::kOn_ms,
 				 LedConsts::StatusLed::Unprovisioned::kOff_ms);
