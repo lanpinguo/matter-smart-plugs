@@ -12,10 +12,10 @@
 class IO_Config {
 public:
 	enum RelayMode_t : uint8_t {
-		NORMAL_NORMAL = 0x00,
-		NORMAL_COMPACT = 0x01,
-        COMPACT_NORMAL = 0x02,	
-    	COMPACT_COMPACT = 0x03,
+    	COMPACT_COMPACT = 0x00,
+        COMPACT_NORMAL = 0x01,	
+		NORMAL_COMPACT = 0x02,
+		NORMAL_NORMAL = 0x03,
 
 		INVALID_MODE
 	};
